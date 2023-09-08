@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RodovayaknigaRequest;
+use App\Models\Rodovayakniga;
+use App\Services\RodovayaknigaService;
 use Illuminate\Http\JsonResponse;
 
 class RodovayaknigaController extends Controller
 {
-    protected $rodovayaknigaService;
+    protected RodovayaknigaService $rodovayaknigaService;
 
     /**
-     * @param $rodovayaknigaService
+     * @param RodovayaknigaService $rodovayaknigaService
      */
-    public function __construct($rodovayaknigaService)
+    public function __construct(RodovayaknigaService $rodovayaknigaService)
     {
         $this->rodovayaknigaService = $rodovayaknigaService;
+    }
+
+    public function index(): JsonResponse
+    {
+        $rodovayakniga = Rodovayakniga::all();
+        return response()->json($rodovayakniga);
     }
 
     public function store(RodovayaknigaRequest $request): JsonResponse
@@ -23,15 +31,15 @@ class RodovayaknigaController extends Controller
         return response()->json($rodovayakniga, 201);
     }
 
-    public function update(RodovayaknigaRequest $request, int $id): JsonResponse
+    public function update(RodovayaknigaRequest $request, Rodovayakniga $rodovayakniga): JsonResponse
     {
-        $rodovayakniga = $this->rodovayaknigaService->update($id, $request->validated());
+        $rodovayakniga = $this->rodovayaknigaService->update($rodovayakniga, $request->validated());
         return response()->json($rodovayakniga);
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(Rodovayakniga $rodovayakniga): JsonResponse
     {
-        $this->rodovayaknigaService->delete($id);
+        $this->rodovayaknigaService->delete($rodovayakniga);
         return response()->json(null, 204);
     }
 }
