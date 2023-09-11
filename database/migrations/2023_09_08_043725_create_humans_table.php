@@ -24,12 +24,12 @@ return new class extends Migration
             $table->unsignedBigInteger('brothers_or_sisters_id');
             $table->unsignedBigInteger('rodovayakniga_id');
 
-            $table->foreign('birth_id')->references('id')->on('births');
-            $table->foreign('generations_id')->references('id')->on('generations');
-            $table->foreign('father_id')->references('id')->on('fathers');
-            $table->foreign('mother_id')->references('id')->on('mothers');
-            $table->foreign('brothers_or_sisters_id')->references('id')->on('brothers_or_sisters');
-            $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
+//            $table->foreign('birth_id')->references('id')->on('births');
+//            $table->foreign('generations_id')->references('id')->on('generations');
+//            $table->foreign('father_id')->references('id')->on('fathers');
+//            $table->foreign('mother_id')->references('id')->on('mothers');
+//            $table->foreign('brothers_or_sisters_id')->references('id')->on('brothers_or_sisters');
+//            $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
 
             $table->timestamps();
         });
