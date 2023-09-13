@@ -39,8 +39,8 @@ class HumanController extends Controller
 
     public function update(Human $human, HumanRequest $request): JsonResponse
     {
-        $human = $this->humanService->update($request->validated());
-        return response()->json($human);
+        $data = $this->humanService->update($human, $request->validated());
+        return response()->json($data);
     }
 
     public function destroy(Human $human): JsonResponse

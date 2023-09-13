@@ -1,20 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RodovayaknigaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,9 +16,28 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::group(['prefix' => '/app'], function () {
+
+        Route::get('/', function () {
+            return inertia('Dashboard');
+        })->name('dashboard');
+
+        Route::get('/rodovayakniga', [RodovayaknigaController::class, 'index'])->name('rodovayakniga');
+        Route::get('/rodovayakniga/show/{rodovayakniga}', [RodovayaknigaController::class, 'show'])->name('rodovayakniga.show');
+        Route::get('/rodovayakniga/add', [RodovayaknigaController::class, 'add'])->name('rodovayakniga.add');
+        Route::post('/rodovayakniga/store', [RodovayaknigaController::class, 'store'])->name('rodovayakniga.store');
+        Route::delete('/rodovayakniga/delete/{rodovayakniga}', [RodovayaknigaController::class, 'destroy'])->name('rodovayakniga.destroy');
+
+
+    });
+});
+
+
+
+Route::get('/rodovayakniga', function () {
+    return inertia('Rodovayakniga/Index');
+})->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

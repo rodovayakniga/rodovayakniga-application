@@ -6,6 +6,7 @@ use App\Http\Requests\RodovayaknigaRequest;
 use App\Models\Rodovayakniga;
 use App\Services\RodovayaknigaService;
 use Illuminate\Http\JsonResponse;
+use Inertia\Response;
 
 class RodovayaknigaController extends Controller
 {
@@ -19,27 +20,42 @@ class RodovayaknigaController extends Controller
         $this->rodovayaknigaService = $rodovayaknigaService;
     }
 
-    public function index(): JsonResponse
+    public function index(): Response
     {
         $rodovayakniga = Rodovayakniga::all();
-        return response()->json($rodovayakniga);
+        return inertia('Rodovayakniga/Index', [
+            'rodovayakniga' => $rodovayakniga,
+        ]);
     }
 
-    public function store(RodovayaknigaRequest $request): JsonResponse
+    public function show(Rodovayakniga $rodovayakniga)
     {
-        $rodovayakniga = $this->rodovayaknigaService->create($request->validated());
-        return response()->json($rodovayakniga, 201);
+        return inertia('Rodovayakniga/Show', compact('rodovayakniga'));
     }
 
-    public function update(RodovayaknigaRequest $request, Rodovayakniga $rodovayakniga): JsonResponse
+    public function add(): Response
+    {
+        return inertia('Rodovayakniga/Add');
+    }
+
+    public function store(RodovayaknigaRequest $request): Response
+    {
+        $this->rodovayaknigaService->create($request->validated());
+
+        return inertia('Rodovayakniga/Index', [
+            'rodovayakniga' => Rodovayakniga::all(),
+        ]);
+    }
+
+    public function update(RodovayaknigaRequest $request, Rodovayakniga $rodovayakniga)
     {
         $rodovayakniga = $this->rodovayaknigaService->update($rodovayakniga, $request->validated());
         return response()->json($rodovayakniga);
     }
 
-    public function destroy(Rodovayakniga $rodovayakniga): JsonResponse
+    public function destroy(Rodovayakniga $rodovayakniga)
     {
-        $this->rodovayaknigaService->delete($rodovayakniga);
-        return response()->json(null, 204);
+        $rodovayakniga->delete();
+        return redirect()->route('rodovayakniga');
     }
 }

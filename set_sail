@@ -1,2 +1,2 @@
 #!/bin/bash
-alias sail='[ -f sail ] && sh sail || sh ./vendor/bin/sail'
+exec alias sail='[ -f sail ] && sh sail || sh ./vendor/bin/sail'
