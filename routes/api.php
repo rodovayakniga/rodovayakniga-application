@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\App\HumanController;
+use App\Http\Controllers\App\RodovayaknigaController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HumanController;
-use App\Http\Controllers\RodovayaknigaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

@@ -33,7 +33,7 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
 
-                                <NavLink :href="route('rodovayakniga')" :active="route().current('rodovayakniga')">
+                                <NavLink :href="route('rodovayakniga.index')" :active="route().current('rodovayakniga.index')">
                                     Родовое древо
                                 </NavLink>
                             </div>
