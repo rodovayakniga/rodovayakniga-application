@@ -4,7 +4,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 
-defineProps({
+const props = defineProps({
     model: Object,
 });
 
@@ -21,7 +21,7 @@ const edit = (id) => {
 
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Родовая книга: {{ model.name }}
+                Родовая книга: {{ props.model.name }}
             </h2>
         </template>
 
@@ -34,7 +34,7 @@ const edit = (id) => {
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
 
             <PrimaryButton
-                @click="edit(model.id)"
+                @click="edit(props.model.id)"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
                 Изменить
