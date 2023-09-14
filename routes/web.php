@@ -7,7 +7,10 @@ use Inertia\Inertia;
 
 
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -27,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/rodovayakniga', [RodovayaknigaController::class, 'index'])->name('rodovayakniga.index');
         Route::get('/rodovayakniga/show/{rodovayakniga}', [RodovayaknigaController::class, 'show'])->name('rodovayakniga.show');
         Route::get('/rodovayakniga/add', [RodovayaknigaController::class, 'add'])->name('rodovayakniga.add');
+        Route::get('/rodovayakniga/edit/{rodovayakniga}', [RodovayaknigaController::class, 'edit'])->name('rodovayakniga.edit');
+        Route::patch('/rodovayakniga/update/{rodovayakniga}', [RodovayaknigaController::class, 'update'])->name('rodovayakniga.update');
         Route::post('/rodovayakniga/store', [RodovayaknigaController::class, 'store'])->name('rodovayakniga.store');
         Route::delete('/rodovayakniga/delete/{rodovayakniga}', [RodovayaknigaController::class, 'destroy'])->name('rodovayakniga.destroy');
 
