@@ -7,13 +7,13 @@ use Illuminate\Http\RedirectResponse;
 class CrudBaseController extends Controller
 {
     protected string $modelClass;
-    protected string $getRequestClass;
+    protected string $requestClass;
 
 
-    public function __construct(string $modelClass, string $getRequestClass)
+    public function __construct(string $modelClass, string $requestClass)
     {
         $this->modelClass = $modelClass;
-        $this->getRequestClass = $getRequestClass;
+        $this->requestClass = $requestClass;
     }
 
     public function index(): Response
@@ -43,7 +43,7 @@ class CrudBaseController extends Controller
 
     public function store(): RedirectResponse
     {
-        $request = app($this->getRequestClass);
+        $request = app($this->requestClass);
         $this->modelClass::create($request->validated());
         return redirect()->route("{$this->getModelName()}.index");
     }
@@ -60,7 +60,7 @@ class CrudBaseController extends Controller
     public function update($id): RedirectResponse
     {
         $model = $this->modelClass::findOrFail($id);
-        $request = app($this->getRequestClass);
+        $request = app($this->requestClass);
         $model->update($request->validated());
         return redirect()->route("{$this->getModelName()}.index");
     }
