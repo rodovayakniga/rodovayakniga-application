@@ -39,15 +39,15 @@ const form = useForm({
 
                             <form
                                 @submit.prevent="form.patch(route('rodovayakniga.update', props.model.id))"
-                                class="mt-6 space-y-6"
+                                class="mt-6 space-y-6 m-4"
                             >
                                 <div>
-                                    <InputLabel for="name" value="name" />
+                                    <InputLabel for="name" value="Название РОДового древа" />
 
                                     <TextInput
                                         id="name"
                                         type="text"
-                                        class="mt-1 block w-full"
+                                        class="mt-1 block w-full p-2"
                                         v-model="form.name"
                                         autocomplete="name"
                                     />
