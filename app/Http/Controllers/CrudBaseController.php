@@ -1,5 +1,4 @@
 <?php
-/*@TODO(Don't check data)*/
 namespace App\Http\Controllers;
 
 use Inertia\Response;
