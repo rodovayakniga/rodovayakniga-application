@@ -13,9 +13,7 @@ class Human extends Model
     protected $table = "humans";
 
     protected $fillable = [
-        'name',
-        'last_name',
-        'sur_name',
+        'full_name_id',
         'birth_id',
         'generations_id',
         'father_id',
@@ -28,6 +26,4 @@ class Human extends Model
     {
         return $this->belongsTo(Rodovayakniga::class);
     }
-
-
 }
