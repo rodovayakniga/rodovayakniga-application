@@ -12,7 +12,7 @@ class RodovayaknigaController extends CrudBaseController
     {
         parent::__construct(
             Rodovayakniga::class,
-               RodovayaknigaRequest::class
+            RodovayaknigaRequest::class
         );
     }
 }
