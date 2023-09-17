@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name', 255)->nullable();
             $table->string('last_name', 255)->nullable();
             $table->string('sur_name', 255)->nullable();
+            $table->unsignedBigInteger('human_id');
             $table->timestamps();
+
+            $table->foreign('human_id')->references('id')->on('humans');
         });
     }
 

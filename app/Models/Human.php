@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Human extends Model
 {
@@ -13,17 +15,32 @@ class Human extends Model
     protected $table = "humans";
 
     protected $fillable = [
-        'full_name_id',
         'birth_id',
         'generations_id',
-        'father_id',
-        'mother_id',
-        'brothers_or_sisters_id',
         'rodovayakniga_id',
     ];
+
+    public function generations(): BelongsTo
+    {
+        return $this->belongsTo(Generation::class);
+    }
 
     public function rodovayakniga(): BelongsTo
     {
         return $this->belongsTo(Rodovayakniga::class);
     }
+
+    public function birth(): BelongsTo
+    {
+        return $this->belongsTo(Birth::class);
+    }
+
+    public function fullName(): HasOne
+    {
+        return $this->hasOne(FullName::class);
+    }
+
+//    public function relativesHumans():
+
+
 }

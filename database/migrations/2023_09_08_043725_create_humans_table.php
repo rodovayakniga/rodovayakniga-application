@@ -14,21 +14,13 @@ return new class extends Migration
         Schema::create('humans', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('full_name_id');
             $table->unsignedBigInteger('birth_id');
             $table->unsignedBigInteger('generations_id');
-            $table->unsignedBigInteger('father_id');
-            $table->unsignedBigInteger('mother_id');
-            $table->unsignedBigInteger('brothers_or_sisters_id');
             $table->unsignedBigInteger('rodovayakniga_id');
 
-//            $table->foreign('full_name_id')->references('id')->on('full_names');
-//            $table->foreign('birth_id')->references('id')->on('births');
-//            $table->foreign('generations_id')->references('id')->on('generations');
-//            $table->foreign('father_id')->references('id')->on('fathers');
-//            $table->foreign('mother_id')->references('id')->on('mothers');
-//            $table->foreign('brothers_or_sisters_id')->references('id')->on('brothers_or_sisters');
-//            $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
+            $table->foreign('birth_id')->references('id')->on('births');
+            $table->foreign('generations_id')->references('id')->on('generations');
+            $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
 
             $table->timestamps();
         });

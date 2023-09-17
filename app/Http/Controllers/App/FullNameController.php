@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\App;
 
+use App\Http\Controllers\CrudBaseController;
 use App\Http\Requests\FullNameRequest;
 use App\Models\FullName;
 
