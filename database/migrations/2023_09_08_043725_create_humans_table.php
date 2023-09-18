@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('humans', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('last_name')->nullable();
+            $table->string('sur_name')->nullable();
 
             $table->unsignedBigInteger('birth_id');
             $table->unsignedBigInteger('generation_id');
