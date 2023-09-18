@@ -16,11 +16,11 @@ class Human extends Model
 
     protected $fillable = [
         'birth_id',
-        'generations_id',
+        'generation_id',
         'rodovayakniga_id',
     ];
 
-    public function generations(): BelongsTo
+    public function generation(): BelongsTo
     {
         return $this->belongsTo(Generation::class);
     }
