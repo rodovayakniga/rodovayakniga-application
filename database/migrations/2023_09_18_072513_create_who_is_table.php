@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('who_is', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
             $table->unsignedBigInteger('human_id1');
             $table->unsignedBigInteger('human_id2');
             $table->timestamps();

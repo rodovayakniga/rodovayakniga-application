@@ -21,11 +21,11 @@ return new class extends Migration
             $table->unsignedBigInteger('generation_id');
             $table->unsignedBigInteger('rodovayakniga_id');
 
+            $table->timestamps();
+
             $table->foreign('birth_id')->references('id')->on('births');
             $table->foreign('generation_id')->references('id')->on('generations');
             $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
-
-            $table->timestamps();
         });
     }
 
