@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Generation extends Model
 {
@@ -13,11 +14,11 @@ class Generation extends Model
     protected $table = "generations";
 
     protected $fillable = [
-        'generations',
+        'generation',
     ];
 
-    public function humans(): HasMany
+    public function human(): HasOne
     {
-        return $this->hasMany(Human::class);
+        return $this->hasOne(Human::class);
     }
 }

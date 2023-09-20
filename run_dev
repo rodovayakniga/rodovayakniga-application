@@ -1,5 +1,6 @@
 #!/bin/bash
-shopt -s expand_aliases
-alias sail='[ -f sail ] && sh sail || sh ./vendor/bin/sail'
-sail up -d
+#shopt -s expand_aliases
+#alias sail='[ -f sail ] && sh sail || sh ./vendor/bin/sail'
+#sail up -d
+php artisan serve &
 npm run dev

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\GenerationController;
 use App\Http\Controllers\App\RodovayaknigaController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-        /*rodovayakniga*/
+        /* Rodovayakniga */
         Route::get('/rodovayakniga', [RodovayaknigaController::class, 'index'])->name('rodovayakniga.index');
         Route::get('/rodovayakniga/show/{rodovayakniga}', [RodovayaknigaController::class, 'show'])->name('rodovayakniga.show');
         Route::get('/rodovayakniga/add', [RodovayaknigaController::class, 'add'])->name('rodovayakniga.add');
@@ -35,6 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/rodovayakniga/store', [RodovayaknigaController::class, 'store'])->name('rodovayakniga.store');
         Route::delete('/rodovayakniga/delete/{rodovayakniga}', [RodovayaknigaController::class, 'destroy'])->name('rodovayakniga.destroy');
 
+        /* Generations */
+        Route::resource('generations', GenerationController::class);
     });
 });
 

@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('humans', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('last_name')->nullable();
+            $table->string('sur_name')->nullable();
 
             $table->unsignedBigInteger('birth_id');
-            $table->unsignedBigInteger('generations_id');
+            $table->unsignedBigInteger('generation_id');
             $table->unsignedBigInteger('rodovayakniga_id');
 
-            $table->foreign('birth_id')->references('id')->on('births');
-            $table->foreign('generations_id')->references('id')->on('generations');
-            $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
-
             $table->timestamps();
+
+            $table->foreign('birth_id')->references('id')->on('births');
+            $table->foreign('generation_id')->references('id')->on('generations');
+            $table->foreign('rodovayakniga_id')->references('id')->on('rodovayaknigas');
         });
     }
 
