@@ -14,7 +14,7 @@ class Generation extends Model
     protected $table = "generations";
 
     protected $fillable = [
-        'generations',
+        'generation',
     ];
 
     public function human(): HasOne
